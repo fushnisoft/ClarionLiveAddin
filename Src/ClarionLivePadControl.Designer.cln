@@ -1,0 +1,159 @@
+﻿!~
+ ~ Created with Clarion 8.0
+ ~ User: brahn
+ ~ Date: 8/03/2012
+ ~ Time: 10:24 PM
+ ~
+ ~ To change this template use Tools | Options | Coding | Edit Standard Headers.
+ ~!
+	
+					MEMBER('')
+    
+					NAMESPACE(ClarionLiveAddin)
+	USING(System)
+	USING(System.Drawing)
+	USING(System.Windows.Forms)
+
+	!!! <summary>
+	!!! Description of UserControl1.
+	!!! </summary>
+ClarionLivePadControl        CLASS(),TYPE,NETCLASS,PARTIAL
+InitializeComponent     PROCEDURE(),PRIVATE
+linkLabel2 System.Windows.Forms.LinkLabel,PRIVATE
+linkLabel1 System.Windows.Forms.LinkLabel,PRIVATE
+label1 System.Windows.Forms.Label,PRIVATE
+labelCountdown System.Windows.Forms.Label,PRIVATE
+components System.ComponentModel.IContainer,PRIVATE
+timer1 System.Windows.Forms.Timer,PRIVATE
+digitalDisplayControl1 Owf.Controls.DigitalDisplayControl,PRIVATE
+groupBox1 System.Windows.Forms.GroupBox,PRIVATE
+a1Panel1 Owf.Controls.A1Panel,PRIVATE
+					END  
+
+	!!! <summary>
+	!!! This method is required for Windows Forms designer support.
+	!!! Do not change the method contents inside the source code editor. The Forms designer might
+	!!! not be able to load this method if it was changed manually.
+	!!! </summary>
+ClarionLivePadControl.InitializeComponent PROCEDURE()
+resources  System.ComponentModel.ComponentResourceManager
+	CODE
+	SELF.components = NEW System.ComponentModel.Container()
+	resources = NEW System.ComponentModel.ComponentResourceManager(typeof(ClarionLivePadControl))
+	SELF.a1Panel1 = NEW Owf.Controls.A1Panel()
+	SELF.digitalDisplayControl1 = NEW Owf.Controls.DigitalDisplayControl()
+	SELF.groupBox1 = NEW System.Windows.Forms.GroupBox()
+	SELF.label1 = NEW System.Windows.Forms.Label()
+	SELF.labelCountdown = NEW System.Windows.Forms.Label()
+	SELF.timer1 = NEW System.Windows.Forms.Timer(SELF.components)
+	SELF.linkLabel1 = NEW System.Windows.Forms.LinkLabel()
+	SELF.linkLabel2 = NEW System.Windows.Forms.LinkLabel()
+	SELF.a1Panel1.SuspendLayout()
+	SELF.groupBox1.SuspendLayout()
+	SELF.SuspendLayout()
+	! 
+	! a1Panel1
+	! 
+	SELF.a1Panel1.BorderColor = System.Drawing.Color.Gray
+	SELF.a1Panel1.Controls.Add(SELF.digitalDisplayControl1)
+	SELF.a1Panel1.Dock = System.Windows.Forms.DockStyle.Fill
+	SELF.a1Panel1.GradientEndColor = System.Drawing.Color.Gray
+	SELF.a1Panel1.GradientStartColor = System.Drawing.Color.White
+	SELF.a1Panel1.Image = NULL
+	SELF.a1Panel1.ImageLocation = NEW System.Drawing.Point(4, 4)
+	SELF.a1Panel1.Location = NEW System.Drawing.Point(10, 61)
+	SELF.a1Panel1.Name = 'a1Panel1'
+	SELF.a1Panel1.Padding = NEW System.Windows.Forms.Padding(20, 20, 30, 33)
+	SELF.a1Panel1.RoundCornerRadius = 29
+	SELF.a1Panel1.ShadowOffSet = 12
+	SELF.a1Panel1.Size = NEW System.Drawing.Size(406, 195)
+	SELF.a1Panel1.TabIndex = 0
+	! 
+	! digitalDisplayControl1
+	! 
+	SELF.digitalDisplayControl1.BackColor = System.Drawing.Color.Transparent
+	SELF.digitalDisplayControl1.DigitColor = System.Drawing.Color.FromArgb(((((64 TRYAS System.Byte)) TRYAS SIGNED)), ((((64 TRYAS System.Byte)) TRYAS SIGNED)), ((((64 TRYAS System.Byte)) TRYAS SIGNED)))
+	SELF.digitalDisplayControl1.DigitText = '00:00:00'
+	SELF.digitalDisplayControl1.Dock = System.Windows.Forms.DockStyle.Fill
+	SELF.digitalDisplayControl1.Location = NEW System.Drawing.Point(20, 20)
+	SELF.digitalDisplayControl1.Name = 'digitalDisplayControl1'
+	SELF.digitalDisplayControl1.Size = NEW System.Drawing.Size(356, 142)
+	SELF.digitalDisplayControl1.TabIndex = 0
+	! 
+	! groupBox1
+	! 
+	SELF.groupBox1.Controls.Add(SELF.linkLabel2)
+	SELF.groupBox1.Controls.Add(SELF.label1)
+	SELF.groupBox1.Controls.Add(SELF.linkLabel1)
+	SELF.groupBox1.Controls.Add(SELF.a1Panel1)
+	SELF.groupBox1.Controls.Add(SELF.labelCountdown)
+	SELF.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill
+	SELF.groupBox1.Location = NEW System.Drawing.Point(3, 3)
+	SELF.groupBox1.Margin = NEW System.Windows.Forms.Padding(10)
+	SELF.groupBox1.Name = 'groupBox1'
+	SELF.groupBox1.Padding = NEW System.Windows.Forms.Padding(10, 48, 10, 30)
+	SELF.groupBox1.Size = NEW System.Drawing.Size(426, 286)
+	SELF.groupBox1.TabIndex = 0
+	SELF.groupBox1.TabStop = false
+	! 
+	! label1
+	! 
+	SELF.label1.Font = NEW System.Drawing.Font('Microsoft Sans Serif', 10, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((0 TRYAS System.Byte)))
+	SELF.label1.Location = NEW System.Drawing.Point(4, 11)
+	SELF.label1.Name = 'label1'
+	SELF.label1.Size = NEW System.Drawing.Size(427, 23)
+	SELF.label1.TabIndex = 1
+	SELF.label1.Text = 'Countdown to the next ClarionLive webinar!'
+	! 
+	! labelCountdown
+	! 
+	SELF.labelCountdown.Font = NEW System.Drawing.Font('Microsoft Sans Serif', 10, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((0 TRYAS System.Byte)))
+	SELF.labelCountdown.Location = NEW System.Drawing.Point(4, 34)
+	SELF.labelCountdown.Name = 'labelCountdown'
+	SELF.labelCountdown.Size = NEW System.Drawing.Size(400, 23)
+	SELF.labelCountdown.TabIndex = 2
+	SELF.labelCountdown.Text = 'Countdown string...'
+	! 
+	! timer1
+	! 
+	SELF.timer1.Enabled = true
+	SELF.timer1.Interval = 1000
+	SELF.timer1.Tick += SELF.Timer1_Tick
+	! 
+	! linkLabel1
+	! 
+	SELF.linkLabel1.Anchor = ((BOR(System.Windows.Forms.AnchorStyles.Bottom,System.Windows.Forms.AnchorStyles.Left) TRYAS System.Windows.Forms.AnchorStyles))
+	SELF.linkLabel1.Location = NEW System.Drawing.Point(10, 263)
+	SELF.linkLabel1.Name = 'linkLabel1'
+	SELF.linkLabel1.Size = NEW System.Drawing.Size(106, 14)
+	SELF.linkLabel1.TabIndex = 1
+	SELF.linkLabel1.TabStop = true
+	SELF.linkLabel1.Text = 'www.clarionlive.com'
+	SELF.linkLabel1.LinkClicked += SELF.LinkLabel1_LinkClicked
+	! 
+	! linkLabel2
+	! 
+	SELF.linkLabel2.Anchor = ((BOR(System.Windows.Forms.AnchorStyles.Bottom,System.Windows.Forms.AnchorStyles.Right) TRYAS System.Windows.Forms.AnchorStyles))
+	SELF.linkLabel2.Image = ((resources.GetObject('linkLabel2.Image') TRYAS System.Drawing.Image))
+	SELF.linkLabel2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+	SELF.linkLabel2.Location = NEW System.Drawing.Point(261, 261)
+	SELF.linkLabel2.Name = 'linkLabel2'
+	SELF.linkLabel2.Size = NEW System.Drawing.Size(155, 16)
+	SELF.linkLabel2.TabIndex = 2
+	SELF.linkLabel2.TabStop = true
+	SELF.linkLabel2.Text = 'Addin by ClarionAddins.com'
+	SELF.linkLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+	SELF.linkLabel2.LinkClicked += SELF.LinkLabel2_LinkClicked
+	! 
+	! ClarionLivePadControl
+	! 
+	SELF.AutoScaleDimensions = NEW System.Drawing.SizeF(6, 13)
+	SELF.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+	SELF.Controls.Add(SELF.groupBox1)
+	SELF.Name = 'ClarionLivePadControl'
+	SELF.Padding = NEW System.Windows.Forms.Padding(3)
+	SELF.Size = NEW System.Drawing.Size(432, 292)
+	SELF.a1Panel1.ResumeLayout(false)
+	SELF.groupBox1.ResumeLayout(false)
+	SELF.ResumeLayout(false)
+       

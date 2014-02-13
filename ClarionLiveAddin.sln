@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+# Clarion 2.1.0.2447
+Project("{83C2234D-9564-46a1-BCC0-8437264CB6AA}") = "ClarionLiveAddin", "ClarionLiveAddin.cnproj", "{BC4E1D2D-3AE6-484B-B443-451E88CD94DE}"
+EndProject
+Project("{83C2234D-9564-46a1-BCC0-8437264CB6AA}") = "InteropTest", "InteropTest\InteropTest.cnproj", "{B09502FD-C671-485F-9706-7AAAE6A1C60C}"
+EndProject
+Project("{83C2234D-9564-46a1-BCC0-8437264CB6AA}") = "Tester", "Tester\Tester.cnproj", "{A7B73A32-BC05-4FFD-BD08-4A7026F027FD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC4E1D2D-3AE6-484B-B443-451E88CD94DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC4E1D2D-3AE6-484B-B443-451E88CD94DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC4E1D2D-3AE6-484B-B443-451E88CD94DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC4E1D2D-3AE6-484B-B443-451E88CD94DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B09502FD-C671-485F-9706-7AAAE6A1C60C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B09502FD-C671-485F-9706-7AAAE6A1C60C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B09502FD-C671-485F-9706-7AAAE6A1C60C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B09502FD-C671-485F-9706-7AAAE6A1C60C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7B73A32-BC05-4FFD-BD08-4A7026F027FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7B73A32-BC05-4FFD-BD08-4A7026F027FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7B73A32-BC05-4FFD-BD08-4A7026F027FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7B73A32-BC05-4FFD-BD08-4A7026F027FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+EndGlobal

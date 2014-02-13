@@ -1,0 +1,26 @@
+  MEMBER()
+
+  NAMESPACE(ClarionLiveAddin)
+  MAP
+  END
+
+  USING ICSharpCode.SharpDevelop.Gui
+  USING System
+  USING System.Collections.Generic
+  USING System.Text
+  USING System.Windows.Forms
+
+ClarionLivePad    CLASS(AbstractPadContent),PUBLIC
+padControl          ClarionLivePadControl 
+Control             PROPERTY,Control,GETONLY,DERIVED
+Construct           PROCEDURE(),PUBLIC
+                  END
+
+ClarionLivePad.Construct  PROCEDURE()
+  CODE
+  SELF.padControl = New ClarionLivePadControl()
+    
+ClarionLivePad.GET_Control  PROCEDURE()
+  CODE
+  
+  RETURN SELF.padControl

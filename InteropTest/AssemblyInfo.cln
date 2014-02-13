@@ -1,0 +1,36 @@
+					MEMBER('')
+					NAMESPACE(InteropTest)
+	USING(System.Reflection)
+	USING(System.Runtime.CompilerServices)
+	USING(System.Runtime.InteropServices)
+
+	! Information about this assembly is defined by the following
+	! attributes.
+	!
+	! change them to the information which is associated with the assembly
+	! you compile.
+
+	[assembly: AssemblyTitle('InteropTest')]
+	[assembly: AssemblyDescription('')]
+	[assembly: AssemblyConfiguration('')]
+	[assembly: AssemblyCompany('')]
+	[assembly: AssemblyProduct('InteropTest')]
+	[assembly: AssemblyCopyright('')]
+	[assembly: AssemblyTrademark('')]
+	[assembly: AssemblyCulture('')]
+
+	! This sets the default COM visibility of types in the assembly to invisible.
+	! If you need to expose a type to COM, use [ComVisible(true)] on that type.
+	[assembly: ComVisible(true)]
+
+  ! The following GUID is for the ID of the typelib if this project is exposed to COM
+  [assembly: Guid('40450738-9888-4039-A615-339B7C4C5198')]
+	! The assembly version has following format :
+	!
+	! Major.Minor.Build.Revision
+	!
+	! You can specify all values by your own or you can build default build and revision
+	! numbers with the '*' character (the default):
+
+  [assembly: AssemblyVersion('1.0.0.0')]
+  [assembly: AssemblyFileVersion('1.0.0.0')]

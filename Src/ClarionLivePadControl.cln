@@ -1,0 +1,74 @@
+!~
+ ~ Created with Clarion 8.0
+ ~ User: brahn
+ ~ Date: 8/03/2012
+ ~ Time: 10:24 PM
+ ~
+ ~ To change this template use Tools | Options | Coding | Edit Standard Headers.
+ ~!
+	
+					MEMBER('')
+    
+					NAMESPACE(ClarionLiveAddin)
+	USING System
+	USING System.Diagnostics
+	USING System.Drawing
+	USING System.Windows.Forms
+
+	!!! <summary>
+	!!! Description of UserControl1.
+	!!! </summary>
+ClarionLivePadControl        CLASS(System.Windows.Forms.UserControl),TYPE,NETCLASS,PARTIAL,PUBLIC
+CONSTRUCT                       PROCEDURE(),PUBLIC
+Timer1_Tick                     PROCEDURE(System.Object sender, System.EventArgs e),PUBLIC
+GetNextEventDateTime            PROCEDURE(),DateTime,PUBLIC
+LinkLabel2_LinkClicked          PROCEDURE(System.Object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e),PUBLIC
+LinkLabel1_LinkClicked          PROCEDURE(System.Object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e),PUBLIC
+                              END  
+
+
+ClarionLivePadControl.CONSTRUCT   PROCEDURE()
+  CODE
+		!
+		! The InitializeComponent() call is required for Windows Forms designer support.
+		!
+  SELF.InitializeComponent()            
+       
+
+ClarionLivePadControl.Timer1_Tick PROCEDURE(System.Object sender, System.EventArgs e)
+  CODE
+  nextEventDateTime OF DateTime = SELF.GetNextEventDateTime()
+  remainingTime OF TimeSpan = nextEventDateTime-DateTime.UtcNow
+  span OF String = String.Format('{{0:0}.{{1:00}:{{2:00}:{{3:00}', remainingTime.Days, remainingTime.Hours, remainingTime.Minutes, remainingTime.Seconds)
+  SELF.digitalDisplayControl1.DigitText = span
+  SELF.labelCountdown.Text = String.Format('{{0:0} day(s), {{1:00} hour(s), {{2:00} minutes(s) and {{3:00} second(s)', remainingTime.Days, remainingTime.Hours, remainingTime.Minutes, remainingTime.Seconds)
+
+ClarionLivePadControl.GetNextEventDateTime    PROCEDURE()!,DateTime,PUBLIC
+  CODE
+  
+  pdtStart OF DateTime = new DateTime(DateTime.UtcNow.Year, 3, 11)
+  pdtEnd OF DateTime = new DateTime(DateTime.UtcNow.Year, 11, 4)
+  utcOffset OF Int32 = 0
+  IF DateTime.UtcNow >= pdtStart AND DateTime.UtcNow <= pdtEnd
+    ! We are in PDT
+    utcOffset = 16
+  ELSE
+    ! We are in PST
+    utcOffset = 15
+  END
+  eventDate OF DateTime = new DateTime(DateTime.UtcNow.Year, DateTime.UtcNow.Month, DateTime.UtcNow.Day, utcOffset, 0, 0)  
+  
+  LOOP
+    IF eventDate.DayOfWeek = DayOfWeek.Friday
+      BREAK
+    END
+    eventDate = eventDate.AddDays(1)
+  END
+  RETURN eventDate
+ClarionLivePadControl.LinkLabel2_LinkClicked  PROCEDURE(System.Object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+  CODE
+  Process.Start('http://clarionaddins.com/clarionlive_addin');
+
+ClarionLivePadControl.LinkLabel1_LinkClicked  PROCEDURE(System.Object sender, System.Windows.Forms.LinkLabelLinkClickedEventArgs e)
+  CODE
+  Process.Start('http://www.clarionlive.com');

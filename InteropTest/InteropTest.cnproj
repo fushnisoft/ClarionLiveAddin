@@ -1,0 +1,69 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{B09502FD-C671-485F-9706-7AAAE6A1C60C}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>InteropTest</RootNamespace>
+    <AssemblyName>InteropTest</AssemblyName>
+    <CatchAll>True</CatchAll>
+    <ExportDll>False</ExportDll>
+    <NoAutoRef>False</NoAutoRef>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>InteropTest.snk</AssemblyOriginatorKeyFile>
+    <DelaySign>False</DelaySign>
+    <AssemblyOriginatorKeyMode>File</AssemblyOriginatorKeyMode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <DefineConstants>
+    </DefineConstants>
+    <CopyCoreAssemblies>False</CopyCoreAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <DefineConstants>
+    </DefineConstants>
+    <CopyCoreAssemblies>True</CopyCoreAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Owf.Controls.A1Panel, Version=1.0.4450.35926, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\Lib\Owf.Controls.A1Panel.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Owf.Controls.DigitalDisplayControl, Version=1.0.4450.35900, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\Lib\Owf.Controls.DigitalDisplayControl.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cln" />
+    <Compile Include="Src\ActiveXControl.cln" />
+    <Compile Include="Src\ActiveXControl.Designer.cln">
+      <DependentUpon>ActiveXControl.cln</DependentUpon>
+    </Compile>
+    <Compile Include="Src\DigitalClock.cln" />
+    <Compile Include="Src\DigitalClock.Designer.cln">
+      <DependentUpon>DigitalClock.cln</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Src\ActiveXControl.resx">
+      <DependentUpon>ActiveXControl.cln</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Src\DigitalClock.resx">
+      <DependentUpon>DigitalClock.cln</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Src" />
+  </ItemGroup>
+  <Import Project="$(ClaNetBinPath)\SoftVelocity.ClarionNet.targets" />
+</Project>

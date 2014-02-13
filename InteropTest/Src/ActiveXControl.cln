@@ -1,0 +1,64 @@
+  MEMBER('')
+    
+  NAMESPACE(InteropTest)
+  USING(System)
+  USING(System.Drawing)
+  USING(System.Windows.Forms)
+  USING(System.Runtime.InteropServices)
+  USING(Microsoft.Win32)
+
+
+	!!! <summary>
+	!!! Description of ActiveXControl.
+	!!! </summary>
+[ClassInterface(ClassInterfaceType.AutoDual)]
+ActiveXControl    CLASS(System.Windows.Forms.UserControl),TYPE,NETCLASS,PARTIAL,PUBLIC
+CONSTRUCT           PROCEDURE(),PUBLIC
+[ComRegisterFunction]
+ComRegister         PROCEDURE(Type t),STATIC
+[ComUnRegisterFunction]
+ComUnregister PROCEDURE(Type t),STATIC
+                  END  
+
+
+ActiveXControl.CONSTRUCT  PROCEDURE()
+  CODE
+		!
+		! The InitializeComponent() call is required for Windows Forms designer support.
+		!
+  SELF.InitializeComponent()            
+       
+ActiveXControl.ComRegister   PROCEDURE(Type t)!,STATIC
+keyName                         string    
+key                             RegistryKey, AUTODISPOSE
+subkey                          RegistryKey, AUTODISPOSE
+libid                           Guid
+ver                             Version
+version                         string
+  CODE
+  keyName = 'CLSID\' & t.GUID.ToString('B')
+  
+  key = Registry.ClassesRoot.OpenSubKey(keyName, true)
+  key.CreateSubKey('Control').Close()
+  
+  subkey = key.CreateSubKey('MiscStatus')
+  subkey.SetValue('', '131457')
+  
+  subkey = key.CreateSubKey('TypeLib')
+  
+  libid = Marshal.GetTypeLibGuidForAssembly(t.Assembly)
+  
+  subkey.SetValue('', libid.ToString('B'))
+  subkey = key.CreateSubKey('Version')
+  
+  ver = t.Assembly.GetName().Version
+  version = string.Format('{{0}.{{1}', ver.Major, ver.Minor)
+  IF (version = '0.0')
+    version = '1.0'
+  END
+  subkey.SetValue('', version);
+
+ActiveXControl.ComUnregister  PROCEDURE(Type t)!,STATIC
+  CODE
+  Registry.ClassesRoot.DeleteSubKeyTree('CLSID\' & t.GUID.ToString('B'))
+  

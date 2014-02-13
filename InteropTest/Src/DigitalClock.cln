@@ -1,0 +1,38 @@
+!~
+ ~ Created with Clarion 8.0
+ ~ User: brahn
+ ~ Date: 9/03/2012
+ ~ Time: 1:08 PM
+ ~
+ ~ To change this template use Tools | Options | Coding | Edit Standard Headers.
+ ~!
+	
+					MEMBER('')
+    
+					NAMESPACE(InteropTest)
+	USING(System)
+	USING(System.Drawing)
+  USING(System.Windows.Forms)
+  USING(System.Runtime.InteropServices)
+
+	!!! <summary>
+	!!! Description of DigitalClock.
+	!!! </summary>
+  [GuidAttribute('9ED54F84-A89D-4fcd-A854-44251E925F09')]
+DigitalClock  CLASS(ActiveXControl),TYPE,NETCLASS,PARTIAL,PUBLIC
+CONSTRUCT             PROCEDURE(),PUBLIC
+Timer1_Tick           PROCEDURE(System.Object sender, System.EventArgs e),PUBLIC
+                    END  
+
+
+DigitalClock.CONSTRUCT    PROCEDURE()
+  CODE
+		!
+		! The InitializeComponent() call is required for Windows Forms designer support.
+		!
+  SELF.InitializeComponent()            
+       
+
+DigitalClock.Timer1_Tick  PROCEDURE(System.Object sender, System.EventArgs e)
+  CODE
+  SELF.digitalDisplayControl1.DigitText = DateTime.Now.ToString('HH:mm:ss')

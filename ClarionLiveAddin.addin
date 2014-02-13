@@ -1,0 +1,28 @@
+<AddIn name = "ClarionLiveAddin"
+       author      = "Brahn Partridge"
+       copyright   = "Copyright (c) 2012, Brahn Partridge"
+       license     = "Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php"
+       url         = "http://www.clarionaddins.com/addins/ClarionLiveAddin.html"
+       description = "IDE Pad with a countdown to the next ClarionLive webinar!"
+       usage       = "Open the pad from the :menuselection:`View --> ClarionLive Countdown` menu.&#xD;"
+       features    = "&#xD;
+* Countdown to webinar, adjusted for local timezone and PST/PDT offset.&#xD;"
+       screenshot  = "ClarionLiveAddin.jpg"
+       source      = "&lt;http://code.google.com/p/clarion-addins/&gt;`_">
+
+  <Runtime>
+    <Import assembly = "ClarionLiveAddin.dll"/>
+  </Runtime>
+
+  <Manifest>
+    <Identity name="ClarionAddins.ClarionLiveAddin" version="1.0"/>
+    <Dependency addin="SharpDevelop" version="2.1"/>
+  </Manifest>
+  
+  <Path name = "/SharpDevelop/Workbench/Pads">
+    <Pad id       = "ClarionLivePad"
+         category = "Main"
+         title    = "ClarionLive Countdown"
+         class    = "ClarionLiveAddin.ClarionLivePad"/>
+  </Path>
+</AddIn>

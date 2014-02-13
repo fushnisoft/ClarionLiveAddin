@@ -1,0 +1,40 @@
+﻿!~
+ ~ Created with Clarion 8.0
+ ~ User: brahn
+ ~ Date: 9/03/2012
+ ~ Time: 10:54 AM
+ ~
+ ~ To change this template use Tools | Options | Coding | Edit Standard Headers.
+ ~!
+	
+					MEMBER('')
+    
+					NAMESPACE(InteropTest)
+	USING(System)
+	USING(System.Drawing)
+	USING(System.Windows.Forms)
+
+	!!! <summary>
+	!!! Description of ActiveXControl.
+	!!! </summary>
+ActiveXControl        CLASS(),TYPE,NETCLASS,PARTIAL
+InitializeComponent     PROCEDURE(),PRIVATE
+					END  
+
+	!!! <summary>
+	!!! This method is required for Windows Forms designer support.
+	!!! Do not change the method contents inside the source code editor. The Forms designer might
+	!!! not be able to load this method if it was changed manually.
+	!!! </summary>
+ActiveXControl.InitializeComponent PROCEDURE()
+	CODE
+	SELF.SuspendLayout()
+	! 
+	! ActiveXControl
+	! 
+	SELF.AutoScaleDimensions = NEW System.Drawing.SizeF(6, 13)
+	SELF.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+	SELF.Name = 'ActiveXControl'
+	SELF.Size = NEW System.Drawing.Size(344, 241)
+	SELF.ResumeLayout(false)
+       

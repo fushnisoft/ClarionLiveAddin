@@ -1,0 +1,88 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{BC4E1D2D-3AE6-484B-B443-451E88CD94DE}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ClarionLiveAddin</RootNamespace>
+    <AssemblyName>ClarionLiveAddin</AssemblyName>
+    <CatchAll>True</CatchAll>
+    <ExportDll>False</ExportDll>
+    <NoAutoRef>False</NoAutoRef>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <ReferencePath>E:\Clarion\C8\bin\</ReferencePath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <DefineConstants>
+    </DefineConstants>
+    <CopyCoreAssemblies>True</CopyCoreAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <CopyCoreAssemblies>True</CopyCoreAssemblies>
+    <Optimize>False</Optimize>
+    <SuppressWarning>False</SuppressWarning>
+    <DefineDEBUG>True</DefineDEBUG>
+    <DefineTRACE>True</DefineTRACE>
+    <NetDriversSupport>False</NetDriversSupport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <FileAlignment>4096</FileAlignment>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.Core">
+      <HintPath>ICSharpCode.Core.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpDevelop">
+      <HintPath>ICSharpCode.SharpDevelop.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Owf.Controls.A1Panel, Version=1.0.4450.35926, Culture=neutral, PublicKeyToken=null">
+      <HintPath>Lib\Owf.Controls.A1Panel.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="Owf.Controls.DigitalDisplayControl, Version=1.0.4450.35900, Culture=neutral, PublicKeyToken=null">
+      <HintPath>Lib\Owf.Controls.DigitalDisplayControl.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cln" />
+    <Compile Include="Src\ClarionLivePad.cln" />
+    <Compile Include="Src\ClarionLivePadControl.cln" />
+    <Compile Include="Src\ClarionLivePadControl.Designer.cln">
+      <DependentUpon>ClarionLivePadControl.cln</DependentUpon>
+    </Compile>
+    <None Include="ClarionLiveAddin.addin">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="ClarionLiveAddin.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="release_notes.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <EmbeddedResource Include="Src\ClarionLivePadControl.resx">
+      <DependentUpon>ClarionLivePadControl.cln</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Src" />
+  </ItemGroup>
+  <Import Project="$(ClaNetBinPath)\SoftVelocity.ClarionNet.targets" />
+</Project>
